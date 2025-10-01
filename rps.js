@@ -5,11 +5,11 @@ function getComputerChoice () {
     let choice = Math.random();
 
     if(choice >= 0.33 && choice <.66) {
-        return 'r'; 
+        return 'rock'; 
     } else if(choice >=.66) {
-        return 'p';
+        return 'paper';
     } else {
-        return 's';
+        return 'scissors';
     }
 }
 
@@ -20,13 +20,13 @@ function getHumanChoice () {
 function playRound (computerChoice, humanChoice) {
     console.log(computerChoice+humanChoice);
 
-    if (humanChoice =='r' && computerChoice =='s') {
+    if (humanChoice =='rock' && computerChoice =='scissors') {
         humanScore++;
         console.log('Human win')
-    } else if (humanChoice == 'p' && computerChoice == 'r') {
+    } else if (humanChoice == 'paper' && computerChoice == 'rock') {
         humanScore++;
         console.log('Human win')
-    } else if (humanChoice == 's' && computerChoice == 'p') {
+    } else if (humanChoice == 'scissors' && computerChoice == 'paper') {
         humanScore++;
         console.log('Human win')
     } else if (humanChoice == computerChoice) {
@@ -37,3 +37,13 @@ function playRound (computerChoice, humanChoice) {
     }
     console.log(humanScore + ' ' + computerScore);
 }
+
+const buttons = document.querySelectorAll("button")
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        const computerSelection = getComputerChoice();
+        const humanSelection = button.id;
+        playRound(computerSelection, humanSelection);
+    });
+});
